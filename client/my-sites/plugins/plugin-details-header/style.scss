@@ -1,0 +1,109 @@
+@use '../variables';
+@import '@wordpress/base-styles/breakpoints';
+@import '@wordpress/base-styles/mixins';
+
+$plugin-details-header-padding: 100px;
+$mobile-icon-height: 175px;
+
+.plugin-details-header__container {
+	display: block;
+    @extend %plugin-header;
+}
+
+.plugin-details-header__main-info {
+	margin-top: 16px;
+	margin-bottom: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+	@include break-mobile {
+		flex-wrap: nowrap;
+		align-items: center;
+		justify-content: flex-start;
+	}
+	
+	.plugin-details-header__icon {
+		@include break-mobile {
+			width: 88px;
+			height: 88px;
+			margin-right: 20px;
+			margin-bottom: 0;
+		}
+		border-radius: 4px;
+		margin-bottom: 15px;
+		width: $mobile-icon-height;
+		height: $mobile-icon-height;
+	}
+}
+
+.plugin-details-header__title-container {
+	margin-top: 30px;
+
+	@include break-mobile {
+		margin-top: 0;
+	}
+}
+
+.plugin-details-header__name {
+	font-family: $brand-serif;
+	font-size: $font-title-large;
+	color: var( --studio-gray-100 );
+}
+
+.plugin-details-header__description {
+	font-size: $font-title-small;
+	color: var( --studio-gray-70 );
+}
+
+.plugin-details-header__additional-info {
+	display: flex;
+	flex-wrap: wrap;
+
+	.plugin-details-header__info {
+		width: 25%;
+		box-sizing: border-box;
+		padding: 0 5px;
+
+		@media screen and ( max-width: 1040px ) {
+			width: 50%;
+			padding-bottom: 12px;
+		}
+	}
+
+	.plugin-details-header__info-title {
+		font-size: $font-body-extra-small;
+		font-weight: 400;
+		color: var( --studio-gray-60 );
+	}
+
+	.plugin-details-header__info-value {
+		font-size: $font-body;
+		color: var( --studio-gray-90 );
+	}
+}
+
+.plugin-details-header__tags {
+	position: absolute;
+    top: calc( $mobile-icon-height + 25px );
+	font-size: $font-body-extra-small;
+	color: var( --studio-gray-60 );
+
+	@include break-mobile {
+		position: relative;
+		top: 0;
+	}
+}
+
+.is-placeholder {
+	.plugin-details-header__name,
+	.plugin-details-header__description,
+	.plugin-details-header__additional-info {
+		@extend %placeholder;
+	}
+
+	.plugin-details-header__tags {
+		@extend %placeholder;
+		width: 50%;
+	}
+}

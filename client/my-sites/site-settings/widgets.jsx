@@ -1,0 +1,113 @@
+import { Card } from '@automattic/components';
+import { localize } from 'i18n-calypso';
+import PropTypes from 'prop-types';
+import { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import FormFieldset from 'calypso/components/forms/form-fieldset';
+import SupportInfo from 'calypso/components/support-info';
+import JetpackModuleToggle from 'calypso/my-sites/site-settings/jetpack-module-toggle';
+import SettingsSectionHeader from 'calypso/my-sites/site-settings/settings-section-header';
+import isJetpackModuleActive from 'calypso/state/selectors/is-jetpack-module-active';
+import { getCustomizerUrl, isJetpackSite } from 'calypso/state/sites/selectors';
+import { getSelectedSiteId } from 'calypso/state/ui/selectors';
+
+class Widgets extends Component {
+	static defaultProps = {
+		isSavingSettings: false,
+		isRequestingSettings: true,
+		fields: {},
+	};
+
+	static propTypes = {
+		onSubmitForm: PropTypes.func.isRequired,
+		handleAutosavingToggle: PropTypes.func.isRequired,
+		handleAutosavingRadio: PropTypes.func.isRequired,
+		isSavingSettings: PropTypes.bool,
+		isRequestingSettings: PropTypes.bool,
+		fields: PropTypes.object,
+	};
+
+	isFormPending = () => this.props.isRequestingSettings || this.props.isSavingSettings;
+
+	renderWidgetsSettings() {
+		const { selectedSiteId, translate } = this.props;
+		const formPending = this.isFormPending();
+
+		return (
+			<FormFieldset>
+				<SupportInfo
+					text={ translate( 'Provides additional widgets for use on your site.' ) }
+					link="https://jetpack.com/support/extra-sidebar-widgets/"
+				/>
+
+				<JetpackModuleToggle
+					siteId={ selectedSiteId }
+					moduleSlug="widgets"
+					label={ translate(
+						'Make extra widgets available for use on your site including images and Twitter streams'
+					) }
+					disabled={ formPending }
+				/>
+			</FormFieldset>
+		);
+	}
+
+	renderWidgetVisibilitySettings() {
+		const { selectedSiteId, translate } = this.props;
+		const formPending = this.isFormPending();
+
+		return (
+			<FormFieldset>
+				<SupportInfo
+					text={ translate(
+						'Widget visibility lets you decide which widgets appear on which pages, so you can finely tailor widget content.'
+					) }
+					link="https://jetpack.com/support/widget-visibility"
+				/>
+
+				<JetpackModuleToggle
+					siteId={ selectedSiteId }
+					moduleSlug="widget-visibility"
+					label={ translate(
+						'Enable widget visibility controls to display widgets only on particular posts or pages'
+					) }
+					disabled={ formPending }
+				/>
+			</FormFieldset>
+		);
+	}
+
+	render() {
+		const { translate } = this.props;
+
+		/* eslint-disable wpcalypso/jsx-classname-namespace */
+		return (
+			<Fragment>
+				<SettingsSectionHeader title={ translate( 'Widgets' ) } />
+
+				<Card className="site-settings">
+					{ this.renderWidgetsSettings() }
+					<hr />
+					{ this.renderWidgetVisibilitySettings() }
+				</Card>
+			</Fragment>
+		);
+		/* eslint-enable wpcalypso/jsx-classname-namespace */
+	}
+}
+
+export default connect( ( state ) => {
+	const selectedSiteId = getSelectedSiteId( state );
+
+	return {
+		customizeUrl: getCustomizerUrl( state, selectedSiteId ),
+		selectedSiteId,
+		siteIsJetpack: isJetpackSite( state, selectedSiteId ),
+		widgetsModuleActive: !! isJetpackModuleActive( state, selectedSiteId, 'widgets' ),
+		widgetVisibilityModuleActive: !! isJetpackModuleActive(
+			state,
+			selectedSiteId,
+			'widget-visibility'
+		),
+	};
+} )( localize( Widgets ) );

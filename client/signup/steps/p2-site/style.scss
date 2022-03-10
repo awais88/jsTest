@@ -1,0 +1,190 @@
+.p2-site__create {
+	.p2-step-wrapper__header-text {
+		font-size: var( --p2-font-size-form-xl );
+		font-weight: 700;
+	}
+}
+
+.p2-site__site-url-container {
+	position: relative;
+}
+
+.p2-site__wordpress-domain-suffix {
+	color: var( --p2-color-link );
+	line-height: 22px;
+	pointer-events: none;
+	position: absolute;
+	font-size: var( --p2-font-size-form );
+	top: 19px;
+	right: 24px;
+}
+
+.p2-site__validation-site,
+.p2-site__validation-site-title {
+	.validation-fieldset__validation-message {
+		min-height: 0;
+	}
+}
+
+.p2-site__validation-site-title.validation-fieldset {
+	margin-bottom: 32px;
+}
+
+.p2-site__form-footer {
+	margin-top: 48px;
+}
+
+.p2-site__form-submit-btn.is-primary {
+	float: none;
+	margin: 0;
+	padding: 1em 2em;
+	width: 100%;
+	background-color: var( --p2-color-link );
+	border: none;
+	border-radius: 50px; /* stylelint-disable-line */
+	font-weight: normal;
+	font-size: var( --p2-font-size-form-s );
+	color: var( --p2-color-white );
+	transition: background 0.2s ease;
+
+	&:hover,
+	&:focus {
+		background-color: var( --p2-color-link-dark );
+		border: none;
+		color: var( --p2-color-white );
+	}
+
+	&[disabled] {
+		opacity: 0.5;
+		color: var( --p2-color-white );
+		background-color: var( --p2-color-link );
+		border: none;
+	}
+}
+
+.p2-site__form .form-label {
+	color: var( --p2-color-text );
+	font-weight: 500; /* stylelint-disable-line */
+	font-size: var( --p2-font-size-form-xxs );
+	letter-spacing: -0.01em;
+	margin-bottom: 8px;
+}
+
+.p2-site__form input[type='text'].form-text-input {
+	padding: 18px 24px;
+	line-height: 1;
+	border-radius: 2px;
+	font-size: var( --p2-font-size-form );
+	color: var( --p2-color-text );
+	border-color: var( --p2-color-border-medium );
+
+	&:focus,
+	&:hover {
+		border-color: var( --p2-color-link );
+	}
+
+	&:focus,
+	&:focus:hover {
+		box-shadow: 0 0 0 1px var( --p2-color-link );
+	}
+
+	&.is-error {
+		border-color: var( --p2-color-error );
+
+		&:hover {
+			border-color: var( --p2-color-error );
+		}
+
+		&:focus,
+		&:focus:hover {
+			box-shadow: 0 0 0 1px var( --p2-color-error );
+		}
+	}
+
+	&.is-valid {
+		border-color: var( --p2-color-valid );
+
+		&:hover {
+			border-color: var( --p2-color-valid );
+		}
+
+		&:focus,
+		&:focus:hover {
+			border-color: var( --p2-color-valid );
+			box-shadow: 0 0 0 1px var( --p2-color-valid );
+		}
+	}
+}
+
+.p2-site__form input[type='text'].p2-site__site-url.form-text-input {
+	padding-right: 160px;
+}
+
+.p2-site__form .form-input-validation {
+	color: var( --p2-color-text );
+	font-size: var( --p2-font-size-form-xxs );
+	line-height: 1.5;
+	padding: 0;
+	padding-top: 9px;
+	padding-left: 2px;
+
+	&.is-error {
+		color: var( --p2-color-error );
+	}
+
+	svg {
+		display: none;
+	}
+}
+
+.p2-site__learn-more {
+	padding-top: 48px;
+	text-align: center;
+}
+
+.p2-site__learn-more-link {
+	color: var( --p2-color-link );
+	text-decoration-line: none;
+	font-size: var( --p2-font-size-form-xxs );
+	line-height: 1.5;
+	border-bottom: 1px solid currentColor;
+	padding-bottom: 2px;
+}
+
+.p2-site__subdomain-suggestions {
+	display: flex;
+	flex-direction: column;
+	margin-top: 24px;
+}
+
+.p2-site__subdomain-suggestions button.p2-site__subdomain-suggestions-item {
+	background: var( --p2-color-white );
+	border: 1px solid var( --p2-color-border-medium );
+	border-radius: 0;
+	justify-content: flex-start;
+	padding: 18px 24px;
+	margin-bottom: 0;
+	transition: border 0.2s ease;
+	margin-top: -1px;
+	position: relative;
+	font-size: 15px; /* stylelint-disable-line */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	&:first-child {
+		border-radius: 2px 2px 0 0;
+	}
+
+	&:last-child {
+		border-radius: 0 0 2px 2px;
+	}
+
+	&:hover,
+	&:focus {
+		cursor: pointer;
+		border-color: var( --p2-color-link );
+		z-index: 1;
+		background: var( --p2-color-white );
+	}
+}

@@ -1,0 +1,206 @@
+@use '../variables';
+@import '@automattic/color-studio/dist/color-variables';
+
+.plugins-browser-item {
+	box-sizing: border-box;
+	cursor: pointer;
+	display: block;
+	float: left;
+	margin: 10px 0;
+	position: relative;
+	overflow: hidden;
+
+	&.is-placeholder {
+		cursor: default;
+	}
+
+	.plugin-icon {
+		width: 48px;
+		height: 48px;
+		margin-right: 0;
+
+		&.is-placeholder {
+			animation: loading-fade 1.6s ease-in-out infinite;
+		}
+	}
+
+	.plugin-icon {
+		width: 60px;
+		height: 60px;
+	}
+
+	.plugins-browser-item__title,
+	.plugins-browser-item__author,
+	.plugins-browser-item__last-updated {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		margin-left: calc( 60px + 16px ); // icon width + margin
+	}
+
+	.plugins-browser-item__description {
+		margin: 16px 0;
+		font-size: $font-body-small;
+		font-weight: 400;
+		color: $studio-gray-60;
+	}
+
+	&.compact {
+		.plugins-browser-item__description {
+			margin: 5px 0 0 calc( 60px + 16px ); // icon width + margin
+		}
+	}
+
+	@include breakpoint-deprecated( '>960px' ) {
+		width: calc( 50% - 10px ); // 2 column grid with 20px gutter
+	}
+
+	@include breakpoint-deprecated( '<960px' ) {
+		width: 100%;
+	}
+}
+
+.plugins-browser-item__info {
+	overflow: hidden; // lazy clearfix
+}
+
+.plugins-browser-item__link {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 30px;
+	box-sizing: border-box;
+	border: 1px solid var( --studio-gray-5 );
+	border-radius: 5px; /* stylelint-disable-line scales/radii */
+
+	&:focus,
+	&:hover {
+		border-color: var( --studio-gray-30 );
+	}
+}
+
+.plugins-browser-item__title,
+.plugins-browser-item__author,
+.plugins-browser-item__description {
+	overflow: hidden;
+
+	.is-placeholder & {
+		color: transparent;
+		background-color: var( --color-neutral-0 );
+		animation: loading-fade 1.6s ease-in-out infinite;
+	}
+}
+
+.plugins-browser-item__title {
+	color: var( --color-neutral-70 );
+	font-weight: 600;
+	font-size: $font-body;
+	margin-top: -3px;
+}
+
+.plugins-browser-item__author {
+	color: var( --color-text-subtle );
+	font-size: $font-body-small;
+}
+
+.plugins-browser-item__author-name {
+	color: $studio-blue-40;
+}
+
+.plugins-browser-item__last-updated,
+.plugins-browser-item__rating-value,
+.plugins-browser-item__active-installs {
+	color: var( --studio-gray-60 );
+	font-size: $font-body-extra-small;
+}
+
+.plugins-browser-item__untested-notice {
+	display: flex;
+	color: var( --studio-gray-60 );
+	fill: var( --studio-gray-60 );
+	font-size: $font-body-small;
+	margin-bottom: 16px;
+
+	.plugins-browser-item__untested-text {
+		margin-left: 6px;
+	}
+}
+
+.plugins-browser-item__last-updated {
+	margin-top: 2px;
+	min-height: 18px;
+}
+
+.plugins-browser-item__active-installs {
+	margin-top: 5px;
+	text-align: right;
+}
+
+.plugins-browser-item__pricing,
+.plugins-browser-item__installed {
+	font-size: $font-body;
+	color: $studio-black;
+}
+
+.plugins-browser-item__active {
+	margin-left: 25px;
+
+	.badge {
+		border-radius: 4px;
+		font-size: $font-body-extra-small;
+	}
+
+	.badge--success {
+		color: var( --studio-celadon-80 );
+		font-weight: 600;
+		background-color: #abe8bc; // TODO: add this color somewhere
+	}
+
+	.badge--info {
+		color: var( --color-neutral-80 );
+		font-weight: 600;
+		background-color: var( --color-neutral-10 );
+	}
+}
+
+.plugins-browser-item__pricing-placeholder {
+	width: 150px;
+
+	@extend %placeholder;
+}
+
+.plugins-browser-item__installed {
+	display: flex;
+	animation: appear 0.15s ease-in;
+
+	.gridicon {
+		margin-top: 3px;
+		margin-right: 6px;
+		border-radius: 50%; /* stylelint-disable-line */
+	}
+
+	.gridicon.checkmark--active {
+		color: var( --studio-green-30 );
+		border: 2px solid var( --studio-green-30 );
+	}
+
+	.gridicon.checkmark--inactive {
+		color: var( --studio-gray-60 );
+		border: 2px solid  var( --studio-gray-60 );
+	}
+}
+
+.plugins-browser-item__footer {
+	margin-top: auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.plugins-browser-item__period,
+.plugins-browser-item__requires-plan-upgrade {
+	color: var( --studio-gray-60 );
+	font-size: $font-body-extra-small;
+}
+
+.plugins-browser-item__requires-plan-upgrade {
+	margin-left: 5px;
+}

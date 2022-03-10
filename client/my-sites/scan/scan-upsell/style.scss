@@ -1,0 +1,23 @@
+.scan-upsell {
+	&__content {
+		padding-top: 40px;
+		display: flex;
+		justify-content: center;
+	}
+	.jetpack-product-card {
+		max-width: 420px;
+	}
+}
+
+.scan-upsell__icon {
+	text-align: center;
+
+	img {
+		height: 72px;
+		width: auto;
+	}
+
+	@include breakpoint-deprecated( '>660px' ) {
+		text-align: start;
+	}
+}
